@@ -1,0 +1,16 @@
+package testSuite;
+
+import org.junit.Test;
+import static org.junut.Assert.assertEquals;
+
+public class TestJunit1 {
+
+	String message = "test junit 1";
+	MessageUtil messageUtil = new MessageUtil(message);
+	
+	@Test
+	public void testPrintMessage(){
+		System.out.println("the message displayed");
+		assertEquals(message, messageUtil.PrintMessage());
+	}
+}

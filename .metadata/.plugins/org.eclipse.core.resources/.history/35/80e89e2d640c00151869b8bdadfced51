@@ -1,0 +1,17 @@
+
+public class New1 {
+ public static void main(String[] args) {
+	
+int	i =3;
+int c = 5;
+if(i==c){
+	System.out.println(false);
+}else if(i!=c){
+	System.out.println(true);
+	
+}else{
+	System.out.println("none");
+}
+	
+}
+}

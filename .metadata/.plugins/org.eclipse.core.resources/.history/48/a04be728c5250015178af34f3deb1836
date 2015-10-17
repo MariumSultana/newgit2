@@ -1,0 +1,26 @@
+
+public class TestNew1 {
+
+static int number = 10;
+
+	public static void main(String[] args) {
+	
+ getPolicy();
+ int s  = getNumber();
+ if (s==0){
+	 System.out.println(true);
+ }else{
+	 System.out.println(false);
+ }
+System.out.println(number);
+System.out.println(chars);
+
+}
+	static char chars = 'A';
+	public static void getPolicy(){
+		System.out.println("static method");
+	}
+	public static int getNumber(){
+		return 10;
+	}
+}

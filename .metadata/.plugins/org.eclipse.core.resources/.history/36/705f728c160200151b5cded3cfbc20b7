@@ -1,0 +1,11 @@
+import java.applet.*;
+import java.awt.*;
+public class Applet extends AppletSub{
+	
+	public void paint (Graphics g){
+		
+		g.drawString("Hello world", 25, 50);
+	}
+	
+
+}

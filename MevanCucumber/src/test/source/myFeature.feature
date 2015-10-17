@@ -1,0 +1,10 @@
+Feature: Find the best plan for you
+
+  Scenario: Find the best dental plan for you
+    Given navigate to ehealth page
+    When click on dental plan
+    And find zipCode click on zip
+    And click on goBtn
+    Then Get the text
+    And verify the expected text
+    And Close brower

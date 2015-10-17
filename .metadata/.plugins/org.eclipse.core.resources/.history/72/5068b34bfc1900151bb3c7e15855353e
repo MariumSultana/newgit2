@@ -1,0 +1,31 @@
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+
+public class FaceBookAutomation 
+{
+WebDriver dr;
+	@Before
+	public void start(){
+		dr = new FirefoxDriver();
+		dr.manage().window().maximize();
+		dr.get("https://www.yahoo.com");
+		
+	}
+	@After
+	public void end(){
+		dr.quit();
+	}
+	@Test
+	public void testLogin(){
+		dr.findElement(By.xpath("//div[@id='masthead']/div/div/div[2]/div[2]/ul/li[1]/a")).click();
+		dr.findElement(By.xpath("//input[@id='p_13838465-p']")).sendKeys("mail");
+		dr.findElement(By.xpath("//button[@id='search-submit']")).click();
+		//dr.findElement(By.xpath("//span[@id='PagesLikesCountDOMID']/span")).click();
+		//dr.findElement(By.xpath("//div[@id='u_0_g']/div/div/div/ul/li[2]/a/span[1]")).click();
+	}
+}

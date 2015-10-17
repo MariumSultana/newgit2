@@ -1,0 +1,20 @@
+
+public class New1 {
+ public static void main(String[] args) {
+
+String name="aaa";	
+String name1="bbb";	
+String name2="ccc";	
+String name3="ddd";	
+ String str[] = new String[4];
+str[0]="aaa";
+str[1]="bbb";
+str[2]="ccc";
+str[3]="ddd";
+for(int a =0; a<str.length; a++){
+System.out.println(str[a]);
+System.out.println();
+}
+	
+}
+}

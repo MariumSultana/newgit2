@@ -1,0 +1,8 @@
+Feature: my first maven test
+Scenario: my first scenario
+
+Given my first step
+When my first step
+Then my first step
+
+

@@ -1,0 +1,37 @@
+package com.cucumber1st.MevanCucumber;
+
+import org.openqa.selenium.WebDriver;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+public class Steps {
+	WebDriver dr;
+	@Given("^navigate to ehealth page$")
+	public void getURL() throws Throwable {
+	    dr.get("http://www.mortgagecalculator.org/");
+	    
+	}
+
+	@When("^click on \"([^\"]*)\" plan$")
+	public void click_on_plan(String arg1) throws Throwable {
+	    
+	}
+
+	@When("^Enter \"([^\"]*)\"$")
+	public void Enter(String arg1) throws Throwable {
+	   
+	}
+
+	@When("^click on \"([^\"]*)\"$")
+	public void click_on(String arg1) throws Throwable {
+	    
+	}
+
+	@Then("^verify the expected text$")
+	public void verify_the_expected_text() throws Throwable {
+	   
+	}
+
+}

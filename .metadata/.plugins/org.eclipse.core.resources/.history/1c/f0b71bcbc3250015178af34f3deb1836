@@ -1,0 +1,16 @@
+
+public class TestNew1 {
+
+int number;
+
+	public static void main(String[] args) {
+	
+
+double list[] = {15.2, 12.3, 7.5, 1.0};
+double total = 0;
+for(int i = 0; i <list.length; i++){
+	total += list.length;
+	System.out.println(total);
+}
+}
+}

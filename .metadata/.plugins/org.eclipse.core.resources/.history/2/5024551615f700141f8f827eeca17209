@@ -1,0 +1,23 @@
+public class Course{
+ int cNum;
+ 
+	public Course(String name){
+		System.out.println("Course name is: "+name); 
+	}
+	public void setNum(int num) {
+		cNum = num;
+	}
+	public int getNum(){
+		System.out.println("get name: "+cNum);
+		return cNum;
+		}
+	public static void main(String[] args){
+		
+	Course c1 = new Course("Online");
+	Course c2 = new Course("Exam");
+	c1.setNum(2);
+	c1.getNum();
+	System.out.println("variable value: "+c1.cNum);
+	}
+	
+}

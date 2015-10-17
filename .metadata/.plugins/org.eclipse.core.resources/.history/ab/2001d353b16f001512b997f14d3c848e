@@ -1,0 +1,374 @@
+package hfp;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ErrorCollector;
+import org.openqa.selenium.By;
+import org.openqa.selenium.InvalidSelectorException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+// first step of HF, a xls is also updated with data
+public class HFtestFunctionxls {
+	WebDriver dr;
+	String[][] xTC, xTS, xTD;
+	String xlPath, xlPathTC, xlPathTS;
+	int tcRows, tsRows, tdRows;
+	String vxpath, vKW, vData, Vdata, vScreenshotpath;
+	int i, j, k;
+	@Rule
+	public ErrorCollector errCol = new ErrorCollector();
+	
+	@Before
+	public void start(){
+		System.out.println("test execution is started");
+	}
+	
+	@Test
+	public void TestSearchForgotNews() throws InterruptedException, IOException{
+		//String[][] xTC, xTS, xTD;//are 2Darry to hold the excel data..test cases and test steps
+		//String xlPath, xlPathTC, xlPathTS;//where is the XL file located
+	//	int tcRows, tsRows, tdRows;// get row count for each sheet
+		//String vxpath, vKW, Vdata, vScreenshotpath;
+		
+		//1. Read the TestCases and TestSteps sheet from the excel into 0D array's.
+		xlPath = "/Users/Maisha/Documents/DDF_KDF_HF/HF.xls";
+		
+		
+		//vScreenshotpath="/Users/Maisha/Pictures/KDF/screenshot.JPEG";
+		
+		
+		xTC = readxl(xlPath, "TestCases");
+		xTS = readxl(xlPath, "TestSteps");
+		xTD= readxl(xlPath, "TestData");
+		
+		//get the number of rows and columns for each excel sheet that we read into 2D array's.
+				tcRows=xTC.length;
+				tsRows=xTS.length;
+				tdRows=xTD.length;
+				System.out.println("total test case row are: "+tcRows);
+				System.out.println("total test step row are: "+tsRows);
+				//Test case by default we will assume it to be a pass.
+				//if even 1 test step fails, we will mark the test case as fail
+			
+			for(k=1; k<tdRows; k++){
+				//read the test data into the TD variable
+				if(xTD[k][1].equals("Y")){
+					
+					for(i = 1; i<tcRows; i++){
+						//2. It will go through each row in the Test Case sheet and check if it is ready for execution.
+						if (xTC[i][2].equals("Y")){
+							xTC[i][3]="Pass";
+						System.out.println("Executing test case ID "+xTC[i][0]);
+						//3. If yes, then it will go through each row in the test step sheet to see a matching TCID.
+						for(j=1; j<tsRows; j++){
+							if (xTC[i][0].equals(xTS[j][0])){
+							System.out.println("Executing test step ID " +xTS[j][0]);
+							vKW = xTS[j][4];
+							vxpath= xTS[j][5];
+							vData= xTS[j][6];
+							vData= getTestData(vData);
+							
+							
+							System.out.println("the KW is " +vKW);
+							System.out.println("the vxpath is " +vxpath);
+							System.out.println("the Vdata is " +Vdata);
+							//AUT will start to get interacted with
+							try{
+							keywordExecute(vKW, vxpath, Vdata);
+							xTS[j][7]="Pass";
+							//only for expected error, verify keyword method we call directly 
+						if(vKW.equals("verifyText")){
+							xTS[j][7]= verifyText(vxpath, Vdata);
+							//String actual = verifyText(vxpath, Vdata);
+							//xTS[j][8]= actual;
+							//System.out.println("the actual data" +actual);
+							if(xTS[j][7].equals("Fail")){
+								xTC[i][3]="Fail";
+								takeScreenshot("/Users/Maisha/Documents/DDF/HF_Screenshot_"+xTC[i][0]+"-"+xTS[j][2]+".JPEG");
+							}
+						}
+							/*if(vKW.equals("verifyLink")){
+								xTS[j][7]= verifyLink(Vdata);
+								String actual1 = verifyLink(Vdata);
+								xTS[j][8]= actual1;
+								System.out.println("the actual data" +actual1);
+								if(xTS[j][7].equals("Fail")){
+									xTC[i][2]="Fail";
+									takeScreenshot("/Users/Maisha/Documents/DDF/KDF_Screenshot_"+xTC[i][0]+"-"+xTS[j][2]+".JPEG");
+								}
+							
+						}*/
+						}catch(Exception e){
+								xTS[j][7]="Fail";
+								xTC[i][3]="Fail";
+								takeScreenshot("/Users/Maisha/Documents/DDF/KDF_Screenshot_"+xTD[k][0]+"-"+xTC[i][0]+"-"+xTS[j][2]+".JPEG");
+								System.out.println("error occured" +e);
+							}
+							
+							//end of interaction with App
+							}
+						}
+						}
+						
+						
+				
+					xlPathTC= "/Users/Maisha/Documents/DDF_KDF_HF/HF_TC_" +xTD[k][0]+".xls";
+					xlPathTS= "/Users/Maisha/Documents/DDF_KDF_HF/HF_TS_" +xTD[k][0]+".xls";
+					
+						
+						
+					writexl(xlPathTC, "Test Cases", xTC);
+					writexl(xlPathTS, "Test Steps", xTS);
+				}
+				}
+			}	
+			
+				
+				}
+				
+	
+				
+	
+	
+	
+	
+		
+	
+	/*@After
+	public void end(){
+	System.out.println("test execution is completed");
+		
+	}*/
+	public String getTestData(String fdata){
+		//purpose: it returns actual test data based on test data variable name
+		//input: Test data variable name
+		//output: actual data
+		switch (fdata){
+		case "vURL":
+		return xTD[k][2];
+		
+		case "vPosition":
+			return xTD[k][3];
+			
+		case "vLocation":
+			return xTD[k][4];
+			default:
+				return fdata;
+		}
+	}
+	public void keywordExecute(String fKW, String fxpath, String fdata) throws Exception{
+		switch (fKW){
+		case "browseGo" :
+			browseGo(fdata);
+			break;
+		
+		case"browserClose":
+				browserClose();
+				break;
+		case "textType":
+				textType(fxpath, fdata);
+				break;
+			
+
+		case"linkClick":
+					linkClick(fxpath);
+					break;
+					
+		case"waitFor":
+						waitFor(Integer.parseInt(fdata));
+					
+		}
+		
+		
+		
+		
+		/*
+		try{
+		if(fKW.equals("buttonClick")){
+			buttonClick(fdata);
+		}
+		}catch(InvalidSelectorException t){
+			System.out.println(" click find tech search not found" +t);
+		}
+		if(fKW.equals("waitFor")){
+			waitFor(Integer.parseInt(fdata));
+		}*/
+		
+	}
+	
+	public void takeScreenshot(String fScreenshotpath) throws IOException{
+		//taking a screenshot if error
+		File scrFile = ((TakesScreenshot)dr).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(scrFile, new File(fScreenshotpath));
+	}
+		
+	public String[][] readxl(String fPath, String fSheet) throws IOException{
+		String[][] readData;
+		int x_row, x_col;
+		File myReadFile = new File(fPath);
+		FileInputStream myStream = new FileInputStream(myReadFile);
+		HSSFWorkbook myWB = new HSSFWorkbook(myStream);
+		HSSFSheet myWS = myWB.getSheet(fSheet);
+		x_row = myWS.getLastRowNum()+1;
+		x_col = myWS.getRow(0).getLastCellNum();
+		System.out.println("count row "+x_row);
+		System.out.println("count cell "+x_col);
+		readData = new String[x_row][x_col];
+		for(int i=0; i<x_row; i++){
+			HSSFRow row = myWS.getRow(i);
+			for(int j=0; j<x_col; j++){
+				HSSFCell cell = row.getCell(j);
+				String value = "-";
+				if(cell!=null){
+					value = cellToString(cell);
+				}
+				readData[i][j] = value;
+				//System.out.println("value"+ value);
+				 try{
+						System.out.println("test  READ get value"+ readData[i][j]);
+						}catch (ArrayIndexOutOfBoundsException s){
+							System.out.println("arran index out of bound exc"+ s);
+						}
+			}
+			
+		}
+		myStream.close();
+		return readData ;
+	}
+	public String cellToString(HSSFCell cell) {
+		Object result;
+		int type = cell.getCellType();
+		switch (type){
+		case HSSFCell.CELL_TYPE_NUMERIC:
+			result = cell.getNumericCellValue();
+			break;
+		case HSSFCell.CELL_TYPE_STRING:
+			result = cell.getStringCellValue();
+			break;
+		case HSSFCell.CELL_TYPE_BOOLEAN:
+			result = cell.getBooleanCellValue();
+			break;
+		case HSSFCell.CELL_TYPE_FORMULA:
+			throw new RuntimeException("can't convert");
+		case HSSFCell.CELL_TYPE_BLANK:
+			result = "%";
+			break;
+		case HSSFCell.CELL_TYPE_ERROR:
+			throw new RuntimeException("can't convert");
+			default:
+				throw new RuntimeException("can't convert");
+		}
+		return result.toString();
+	}
+	public void writexl(String fpath, String fsheet, String[][] fwritexl) throws IOException{
+		int row, col;
+		File writefile = new File(fpath);
+		HSSFWorkbook myWB = new HSSFWorkbook();
+		HSSFSheet myWS = myWB.createSheet(fsheet);
+		row = fwritexl.length;
+		col = fwritexl[0].length;
+		
+		for(int rows=0; rows<row; rows++){
+			HSSFRow x_row = myWS.createRow(rows);
+			for(int cols=0; cols<col; cols++){
+				HSSFCell x_cell = x_row.createCell(cols);
+				x_cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+				x_cell.setCellValue(fwritexl[rows][cols]);
+				
+				FileOutputStream  myStream = new FileOutputStream(writefile);
+				myWB.write(myStream);
+				myStream.flush();
+				myStream.close();
+			}
+		}
+	}
+
+	//independent keyword function-Reusable
+		public void browseGo(String fdata){
+			//purpose: open a browser session and navigate a specific url				
+			//input: URL		
+			//output:
+			dr = new FirefoxDriver();
+			dr.get(fdata);
+			dr.manage().window().maximize();
+			dr.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		}
+		public void browserClose(){
+			//purpose: close open browser			
+			//input: 		
+			//output:
+			dr.quit();
+		}
+		
+		public void linkClick(String fxPath){
+			//purpose: click the button		
+			//input: xpath		
+			//output:
+			dr.findElement(By.xpath(fxPath)).click();
+		}
+		public void buttonClick(String fxPath){
+			//purpose: click the button		
+			//input: xpath		
+			//output:
+			dr.findElement(By.xpath(fxPath)).click();
+		}
+		public void textType(String fxPath, String fdata){
+			//purpose: clear existence value from edit flied, enter value in edit field		
+			//input: 	xpath, test data	
+			//output:x
+			dr.findElement(By.xpath(fxPath)).clear();
+			dr.findElement(By.xpath(fxPath)).sendKeys(fdata);
+		}
+		public void waitFor(int fdata) throws InterruptedException{
+			//purpose: wait for period of time
+			//input: 	xpath, test data	
+			//output:
+			Thread.sleep(fdata);
+		}
+		
+		
+			
+		public String verifyText(String fxPath, String fdata){
+			//purpose: get the actual value and verify with expected result	
+			//input: 	xpath, test data	
+			//output: pass or fail
+			String factual;
+			factual= dr.findElement(By.xpath(fxPath)).getText();
+			if (factual.equals(fdata)){
+				return "Pass";
+			}else{
+				return "Fail";
+			}
+			/*
+			String vactual;
+			vactual= dr.findElement(By.xpath("fxPath")).getText();
+			try{ 
+				Assert.assertEquals(fdata, vactual);
+				return "Pass";
+				}catch (Throwable t){
+					System.out.println(" result is not expected"+ t);
+					errCol.addError(t);
+					return "Fail";
+				}*/
+		}
+		
+}

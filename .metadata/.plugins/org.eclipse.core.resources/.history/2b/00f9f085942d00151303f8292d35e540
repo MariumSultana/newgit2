@@ -1,0 +1,63 @@
+import java.util.List;
+import java.util.ArrayList;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+
+
+
+public class CalanderSelection {
+FirefoxDriver dr = new FirefoxDriver();
+	@Before
+	public void start(){
+		
+		dr.get("http://www.cheapflights.com");
+		dr.manage().window().maximize();
+	}
+	@Test 
+	public void testCalendar() throws Exception{
+		try
+		{
+		dr.findElement(By.xpath(".//*[@id='dp1436632830517']")).click();
+		}
+		catch(NoSuchElementException e1){
+			System.out.println(e1.getMessage());
+			System.out.println("problem found");
+		}
+		finally{
+			dr.findElement(By.xpath("//div[@id='sb-depart']/input")).click();
+			
+		}
+	
+		WebElement dateArea = dr.findElement(By.id("ui-datepicker-div"));
+
+		List<WebElement> column = dateArea.findElements(By.tagName("td"));
+		for(WebElement cell : column)
+		{
+			if(cell.getText().contains("13"))
+			{
+				cell.findElement(By.linkText("13")).click();
+			}
+		}
+		
+		}
+	@Test
+	public void testYear(){
+		dr.findElement(By.xpath("//div[@id='ui-datepicker-div']/div[2]/div/div")).click();
+		
+	}
+	@After
+	public void end(){
+		dr.quit();
+		
+	}
+}
+

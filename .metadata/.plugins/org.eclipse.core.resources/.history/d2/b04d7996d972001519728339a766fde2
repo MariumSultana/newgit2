@@ -1,0 +1,10 @@
+Feature: Find the best plan for you
+
+  Scenario: Find the best dental plan for you
+    Given navigate to ehealth page
+    When click on "//li[@id='ifp-dental']/a" plan
+  	And find "zipCode" click on "01752"
+  	And click on "goBtn"
+    Then Get the "//section[@id='census-upper']/h2"
+    And verify the expected "Find the best Dental plan for you"
+    And Close brower

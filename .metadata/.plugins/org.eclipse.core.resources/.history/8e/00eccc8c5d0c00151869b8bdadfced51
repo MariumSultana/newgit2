@@ -1,0 +1,40 @@
+
+public class New1 {
+ static int number;
+String course;
+char gender;
+double salary;
+public New1(String name){
+	System.out.println("the name is: "+name);
+}
+public int setNum(int eNum){
+	number = eNum;
+	return number;
+}
+public void mCourse(String eCoruse){
+	course=eCoruse;
+}
+public void mGender(char eGender){
+	gender=eGender;
+}
+public void mSalary(double eSalary){
+	salary=eSalary;
+}
+public void mPrint(){
+	System.out.println("the number is: "+number);
+	System.out.println("the number is: "+course);
+	System.out.println("the number is: "+gender);
+	System.out.println("the number is: "+salary);
+}
+public static void main(String[] args) {
+	
+
+New1 eq = new New1("Maisha");
+eq.setNum(8);
+eq.mCourse("summer");
+eq.mGender('F');
+eq.mSalary(213.02);
+eq.mPrint();
+
+}
+}

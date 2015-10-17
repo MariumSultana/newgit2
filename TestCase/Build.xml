@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE project [
+]>
+<project name="Module_Junit_Ant" default="usage" basedir=".">
+	<!-- ====== Initialize Proverties========== -->
+	<property enverionment = "env"/>
+	
+	<property name="ws.home" value="${basedir}"/>
+	<property name="ws.jars" value="C:/Users/Maisha/Downloads/selenium-java-2.45.0/selenium-2.45.0/libs/>
+	<property name="test.dest" value="${ws.home}/build"/>
+	<property name="test.src" value="${ws.home}/src"/>
+	<property name="test.reportsDir" value="C:/rep"/>
+	<path id = "testcase.path">
+	<pathelement laocation="${test.dest}"/>
+	<fileset dir= "${ws.jars}">
+	<include name="*.jar"/>
+	</fileset>
+	</path>
+	
+	
+	</target>
+	<!-- clean -->
+	<target name="clean">
+		<delete dir =${test.dest}"/>
+	</target>
+	<!-- compile -->
+	<target name = "compile" depends = "init, clean">
+	<delete includeemptydirs="true" quiet="true">
+	<fileset dir="${test.dest}" includes="**/*"/>
+	</delete>
+	<echo message ="making directiory..."/>
+	<mkdir dir="${test.dest}"/>
+	<echo message="classpati------: ${test.classpath}"/>
+	<echo message="compiling..."/>
+	<javac
+debug="true"
+destdir="${test.dest}"
+srcdir="${test.src}"
+target="1.5"
+	classpath="${test.classpath}"
+	>
+	</javac>
+	</target>
+	<tar

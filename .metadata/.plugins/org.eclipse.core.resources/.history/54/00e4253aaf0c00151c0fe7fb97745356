@@ -1,0 +1,15 @@
+
+public class New1 {
+ public static void main(String[] args) {
+
+	 String name[]=new String[4];
+	 name[0]="aaa";
+	 name[1]="aaaa";
+	 name[2]="aaaaa";
+	 name[3]="aaaaaa";
+	 for(int n=0; n<name.length; n++){
+	 System.out.println(name.length);
+	 System.out.println(name[n]);
+	 } 
+ } 
+}

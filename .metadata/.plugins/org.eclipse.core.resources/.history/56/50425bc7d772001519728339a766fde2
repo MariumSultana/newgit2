@@ -1,0 +1,62 @@
+package com.cucumber1st.MevanCucumber;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+public class Steps {
+	WebDriver dr;
+	String actual;
+	@Given("^navigate to ehealth page$")
+	public void getURL() throws Throwable {
+		dr = new FirefoxDriver();
+	    dr.get("https://www.ehealthinsurance.com/");
+	    dr.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	    
+	}
+
+	@When("^click on \"([^\"]*)\" plan$")
+	public void click_on_plan(String fxpath) throws Throwable {
+	    dr.findElement(By.xpath(fxpath)).click();
+	}
+
+	@And("^find \"([^\"]*)\" click on \"([^\"]*)\"$")
+	public void find_click_on(String fxpath, String fdata) throws Throwable {
+		dr.findElement(By.id(fxpath)).sendKeys(fdata);
+	}
+
+	@And("^click on \"([^\"]*)\"$")
+	public void click_on(String fxpath) throws Throwable {
+		 dr.findElement(By.id(fxpath)).click();
+	}
+
+	@Then("^Get the \"([^\"]*)\"$")
+	public void Get_the(String fxpath) throws Throwable {
+	actual=	dr.findElement(By.xpath(fxpath)).getText();
+	   
+	}
+
+	@And("^verify the expected \"([^\"]*)\"$")
+	public String verify_the_expected(String factual) throws Throwable {
+		if (actual.equals(factual)){
+			return "Pass";
+		}else{
+			return "Fail";
+		}
+	   
+	}
+	@And("^Close brower$")
+	public void Close_brower() throws Throwable {
+	   dr.quit();
+	}
+
+
+
+}

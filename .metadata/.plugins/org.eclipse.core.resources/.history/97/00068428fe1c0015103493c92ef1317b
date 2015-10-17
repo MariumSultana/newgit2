@@ -1,0 +1,52 @@
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+
+public class NewAutoCar {
+	WebDriver dr;
+	@Before
+	public void start(){
+		dr = new FirefoxDriver();
+		dr.get("https://www.dice.com");
+		dr.manage().window().maximize();
+	}
+	@Ignore
+	@Test
+	public void testCar() throws InterruptedException{
+	
+		dr.findElement(By.xpath("//div[@id='main']/div[2]/div/div/div/section/ul/li[1]/a/span/span[1]/img")).click();
+		dr.findElement(By.xpath("//input[@id='job']")).sendKeys("automation engineer");
+		dr.findElement(By.xpath("//input[@id='location']")).clear();
+		dr.findElement(By.xpath("//input[@id='location']")).sendKeys("NJ");
+		dr.findElement(By.xpath("//input[@id='location']")).submit();
+		dr.findElement(By.xpath("//div[@id='myModal']/div/div/div[1]/button")).click();
+		//dr.findElement(By.xpath("//a[@id='position3']")).click();
+		/*dr.findElement(By.xpath("//div[@id='locations']/div[1]")).getLocation();
+		Thread.sleep(5000);
+		dr.findElement(By.xpath("//input[@id='locations']/div[2]/div[1]/a")).click();
+		Thread.sleep(5000);
+		dr.findElement(By.xpath("//div[@id='companies']/div[1]/span")).click();
+		Thread.sleep(5000);*/
+	}
+	@Test 
+	public void testTitle() throws InterruptedException{
+		System.out.println(dr.findElement(By.xpath("//form[@id='search-form']/fieldset/div[1]/div/strong")).getText());
+		Thread.sleep(5000);
+		dr.findElement(By.xpath("//ul[@id='latest-insights-headlines']/li[1]/a")).click();
+		Thread.sleep(5000);
+		dr.findElement(By.xpath("//div[@id='dice-wrapper']/div[1]/nav/div/ul[2]/li/span[3]")).click();
+		Thread.sleep(5000);
+		dr.findElement(By.xpath("//div[@id='dice-wrapper']/div[1]/nav/div/ul[2]/li/span[4] n ")).click();
+		Thread.sleep(5000);
+	}
+	@After
+	public void end(){
+		dr.quit();
+	}
+
+}

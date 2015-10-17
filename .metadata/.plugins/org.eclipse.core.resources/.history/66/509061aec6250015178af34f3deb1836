@@ -1,0 +1,18 @@
+public class Course{
+
+int number;
+	String Texts;
+	
+	public void numbers(){
+		System.out.println("the name is "+Texts);
+	}
+	
+public void  getStart(String a){
+		System.out.println(a);
+	}
+}
+
+
+
+
+ 

@@ -1,0 +1,16 @@
+
+public class TestNew1 {
+
+ int number;
+ char gender;
+ String name;
+
+	public static void main(String[] args) {
+	
+ Course c1 = new Course();
+ c1.name="test";
+ c1.number = 25;
+ c1.Texts = "string";
+ System.out.println(c1.name);
+	}
+}

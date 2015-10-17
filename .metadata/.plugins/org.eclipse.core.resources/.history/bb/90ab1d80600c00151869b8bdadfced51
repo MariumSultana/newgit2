@@ -1,0 +1,13 @@
+
+public class New1 {
+ static int number=23;
+ static  String course;
+char gender;
+double salary;
+public New1(String name){
+	System.out.println("the name is: "+name);
+}
+public static void main(String[] args) {
+	System.out.println(number);
+}
+}

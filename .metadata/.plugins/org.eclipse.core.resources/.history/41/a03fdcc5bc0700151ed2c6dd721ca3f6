@@ -1,0 +1,27 @@
+
+public class New1 {
+int number;
+static String name = "Maisha";
+char gender;
+public New1(String course){
+	System.out.println("the course name is"+course);
+}
+public int enumber (int enums){
+	number = enums;
+	return number;
+}
+public void egender(char egen){
+	gender=egen;
+}
+public void ePrint(){
+	System.out.println("the number"+ number);
+	System.out.println("the gender"+ gender);
+	System.out.println("the name"+ name);
+}
+public static void main(String[] args) {
+	New1 e = new New1("summer");
+	e.enumber(25);
+	e.egender('F');
+	e.ePrint();
+}
+}

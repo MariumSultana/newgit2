@@ -1,0 +1,8 @@
+Feature: Find the best plan for you
+
+  Scenario: Find the best dental plan for you
+    Given navigate to ehealth page
+    When click on dental plan
+    And Enter zip 
+    And click on Find Plan
+    Then verify the expected text

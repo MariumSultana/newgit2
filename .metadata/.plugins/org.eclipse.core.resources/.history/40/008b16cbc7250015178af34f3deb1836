@@ -1,0 +1,36 @@
+
+public class TestNew1 {
+
+ int number = 10;
+ char gender = 'S';
+ String name = "testss";
+
+	public static void main(String[] args) {
+	
+ Course c1 = new Course();
+ c1.name="test";
+ c1.number = 25;
+ c1.Texts = "string";
+ System.out.println(c1.name);
+ 
+ 
+ TestNew1 t1 = new TestNew1();
+ t1.number = 15;
+ t1.gender = 'A';
+ t1.name = "testeesets";
+ System.out.println(t1.number);
+ int i = 10;
+ int j = 5;
+ int k = 3;
+ i=j;
+ j=k;
+ k=i;
+ System.out.println(i + j + k);
+		 
+ 
+ 
+		
+ 
+	}
+	
+}

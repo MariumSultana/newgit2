@@ -1,0 +1,10 @@
+
+public class New1 {
+	public static void main(String[] args) {
+		int[] myNum = new int[3];
+		for(int x=0; x<myNum.length; x++){
+		System.out.println("my number"+myNum.length);
+		}
+}
+}
+

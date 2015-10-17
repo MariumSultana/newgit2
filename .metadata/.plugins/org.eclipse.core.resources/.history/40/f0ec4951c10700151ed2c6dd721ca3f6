@@ -1,0 +1,22 @@
+
+public class New1 {
+public static void main(String[] args) {
+	int a = 30;
+	switch(a){
+	case 10 :
+		System.out.println(" 10 not match");
+		break;
+	case 20 :
+		System.out.println(" 20 not mathc");
+		break;
+	case 30:
+		System.out.println("30 correct number");
+		break;
+		default:
+			System.out.println("invalid number");
+		}
+	
+	}
+	
+	
+}

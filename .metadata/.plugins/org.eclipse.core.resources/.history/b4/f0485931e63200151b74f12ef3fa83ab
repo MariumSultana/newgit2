@@ -1,0 +1,44 @@
+package testSuite;
+
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ErrorCollector;
+
+public class TestJunit2 {
+	@Rule
+	public ErrorCollector es = new ErrorCollector();
+	
+	@Before
+	public void start(){
+		System.out.println("******star2******");
+	}
+	
+	
+	@Test
+
+	public void  testfst(){
+		int min = 100;
+		int max =100;
+		try{
+			Assert.assertEquals(max, min);
+		}catch(Throwable t){
+			es.addError(t);
+			System.out.println("not equal");
+			
+		
+		}finally{
+			System.out.println("test is done");
+		}
+		
+	}
+	
+	
+	@After
+	public void end(){
+		System.out.println("******end2******");
+	}
+
+}

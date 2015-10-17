@@ -1,0 +1,25 @@
+package com.cucumber1st.MevanCucumber;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+public class Steps {
+	
+	@Given("^my first step$")
+	public void my_first_step() throws Throwable {
+	    System.out.println("first");
+	}
+
+	@When("^my second step$")
+	public void my_second_step() throws Throwable {
+		System.out.println("second");
+	}
+
+	@Then("^my third step$")
+	public void my_third_step() throws Throwable {
+		System.out.println("third");
+	}
+
+
+}

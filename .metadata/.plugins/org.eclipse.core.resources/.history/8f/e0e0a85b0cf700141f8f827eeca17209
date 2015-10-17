@@ -1,0 +1,17 @@
+public class Course{
+	/*public Course(String name){
+		System.out.println("Course name is: "+name); 
+	}
+	public static void main(String[] args){
+	Course c1 = new Course("Online");
+	Course c2 = new Course("Exam");*/
+	static int classnum = 25;
+	static String cname = "Math";
+	static char grade = 'A';
+	public static void main(String[] args) {
+		System.out.println(classnum);
+		System.out.println(cname);
+		System.out.println(grade);
+	}
+	
+}

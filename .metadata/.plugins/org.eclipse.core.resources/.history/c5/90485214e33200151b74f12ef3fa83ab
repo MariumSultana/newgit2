@@ -1,0 +1,40 @@
+package testSuite;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class TestJunit2 {
+	
+	
+	@Before
+	public void start(){
+		System.out.println("******star2******");
+	}
+	
+	
+	@Test
+	public static void main(String[] args) {
+		int a = 1;
+		int b = 3;
+		int c = testfst(a,b);
+		System.out.println("minimum number is: "+c);
+	}
+	public static int testfst(int x, int y){
+		int min;
+		if(x<y)
+			min=x;
+		else
+			min=y;
+		return min;
+	
+		
+	}
+	
+	
+	@After
+	public void end(){
+		System.out.println("******end2******");
+	}
+
+}

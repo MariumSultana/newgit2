@@ -1,0 +1,11 @@
+
+public class New1 {
+ static int number;
+ static String course;
+char gender;
+double salary;
+public New1(String name){
+	System.out.println("the name is: "+name);
+}
+
+}

@@ -1,0 +1,53 @@
+package com.cucumber1st.MevanCucumber;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+public class Steps {
+	WebDriver dr;
+	@Given("^navigate to ehealth page$")
+	public void getURL() throws Throwable {
+	    dr.get("https://www.ehealthinsurance.com/");
+	    dr.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	    
+	}
+
+	@When("^click on \"([^\"]*)\" plan$")
+	public void click_on_plan(String fxpath) throws Throwable {
+	    dr.findElement(By.xpath(fxpath)).click();
+	}
+
+	@And("^Enter \"([^\"]*)\"$")
+	public void Enter(String arg1) throws Throwable {
+	   
+	}
+
+	@And("^click on \"([^\"]*)\"$")
+	public void click_on(String arg1) throws Throwable {
+	    
+	}
+
+	@Then("^Get the \"([^\"]*)\"$")
+	public void Get_the(String arg1) throws Throwable {
+	   
+	}
+
+	@And("^verify the expected \"([^\"]*)\"$")
+	public void verify_the_expected(String arg1) throws Throwable {
+	   
+	}
+	@And("^Close brower$")
+	public void Close_brower() throws Throwable {
+	   
+	}
+
+
+
+}

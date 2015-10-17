@@ -1,0 +1,49 @@
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+
+public class NewAutoCar {
+	WebDriver dr;
+	@Before
+	public void start(){
+		dr = new FirefoxDriver();
+		dr.get("https://www.dice.com");
+		dr.manage().window().maximize();
+	}
+	//@Ignore
+	@Test
+	public void testCar() throws InterruptedException{
+	
+		dr.findElement(By.xpath("//form[@id='search-form']/fieldset/div[4]/div/div[2]/div/a")).click();
+		Thread.sleep(5000);
+		dr.findElement(By.xpath("//input[@id='for_one']")).sendKeys("automation");
+		dr.findElement(By.xpath("//input[@id='for_all']")).sendKeys("engineer");
+		dr.findElement(By.xpath("//input[@id='for_exact']")).sendKeys("permanent position");
+		dr.findElement(By.xpath("//input[@id='for_none']")).sendKeys("none");
+		dr.findElement(By.xpath("//input[@id='for_jt'] ']")).sendKeys("Automation QA Analyst");
+		dr.findElement(By.xpath("//input[@id='for_com']")).sendKeys("any company");
+		dr.findElement(By.xpath("//input[@id='for_loc']")).sendKeys("NJ");
+		Thread.sleep(5000);
+		dr.findElement(By.xpath("//div[@id='radiusS']/a")).click();
+		Thread.sleep(5000);
+		dr.findElement(By.xpath("//input[@id='radius']")).sendKeys("20");
+		
+	}
+	@Ignore
+	@Test 
+	public void testTitle() throws InterruptedException{
+		System.out.println(dr.findElement(By.xpath("//form[@id='search-form']/fieldset/div[1]/div/strong")).getText());
+		Thread.sleep(5000);
+		
+	}
+	@After
+	public void end(){
+		dr.quit();
+	}
+
+}

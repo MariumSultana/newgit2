@@ -1,0 +1,12 @@
+
+public class TestNew1 {
+
+	private static final char[] name = null;
+
+	public static void main(String[] args) {
+
+		
+		System.out.println(name);
+	}
+
+}

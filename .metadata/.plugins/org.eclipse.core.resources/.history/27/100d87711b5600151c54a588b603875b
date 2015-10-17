@@ -1,0 +1,18 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+
+public class KDF1 {
+	WebDriver dr;
+	
+	//independent keyword function
+	public void browserGetURL(String fURL){
+		//purpose: open a browser session and navigate a specific url				
+		//input: URL		
+		//output:
+		dr = new FirefoxDriver();
+	dr.get(fURL);
+	}
+	
+
+}

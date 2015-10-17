@@ -1,0 +1,14 @@
+
+public class TestNew1 {
+
+static int number = 10;
+
+	public static void main(String[] args) {
+	
+
+System.out.println(number);
+System.out.println(chars);
+
+}
+	static char chars = 'A';
+}

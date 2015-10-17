@@ -1,0 +1,36 @@
+package testSuite;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class TestJunit2 {
+	public static void main(String[] args) {
+		int a = 11;
+		int b = 6;
+		int c = testRtF(a, b);
+		System.out.println("minimum value ="+c);
+	}
+	@Before
+	public void start(){
+		System.out.println("******star2******");
+	}
+	
+	
+	@Test
+	public static int testRtF(int n1, int n2){
+		int min;
+		if(n1>n2)
+			min = n2;
+		else
+			min=n1;
+		return min;
+	}
+	
+	
+	@After
+	public void end(){
+		System.out.println("******end2******");
+	}
+
+}

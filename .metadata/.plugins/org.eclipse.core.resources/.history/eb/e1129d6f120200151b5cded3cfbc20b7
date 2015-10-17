@@ -1,0 +1,8 @@
+
+public class AppletSub {
+	int g;
+	public static void main(String[] args) {
+		
+	}
+
+}

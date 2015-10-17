@@ -1,0 +1,6 @@
+Feature: my first test
+
+  Scenario: my first test scenario
+    Given my first step
+    When my second step
+    Then my third step
