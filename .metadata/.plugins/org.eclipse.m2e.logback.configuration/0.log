@@ -933,3 +933,7 @@
 2015-10-17 15:08:24,997 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Maisha\workspace\MevanCucumber\src\main\resources
 2015-10-17 15:08:24,998 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2015-10-17 15:08:24,998 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Maisha\workspace\MevanCucumber\src\test\resources
+2015-10-18 10:33:13,165 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-18 10:33:13,185 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Maisha\gitprogect\workspace\FirstMavenCucumberPro\src\main\resources
+2015-10-18 10:33:13,185 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-18 10:33:13,185 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Maisha\gitprogect\workspace\FirstMavenCucumberPro\src\test\resources
